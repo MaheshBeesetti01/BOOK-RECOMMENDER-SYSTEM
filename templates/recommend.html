@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    .text-white {
+        color: white;
+    }
+
+    .text-black {
+        color: black;
+    }
+
+    body {
+        background-color: #f2f2f2; /* Light Grey */
+    }
+
+    .navbar {
+        background-color: skyblue; /* Updated Skyblue Color */
+    }
+
+    .navbar-brand, .navbar-nav > li > a {
+        color: black !important; /* Updated to Black */
+    }
+
+    .container {
+        background-color: #fff; /* White */
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    h1.text-black {
+        font-family: 'Arial', sans-serif; /* Update to your desired font */
+        font-size: 48px; /* Update to your desired font size */
+        font-weight: bold;
+        margin-bottom: 20px;
+        background-color: #4CAF50; /* Green Color */
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+    form {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center; /* Center align the form */
+    }
+
+    input.form-control {
+        width: 70%;
+        display: inline-block;
+        margin-bottom: 10px; /* Added margin for spacing */
+    }
+
+    input.btn {
+        width: 25%;
+        display: inline-block;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 20px; /* Reduced margin for spacing */
+        transition: transform 0.3s;
+        overflow: hidden;
+        background-color: white; /* White Background */
+    }
+
+    .card-body {
+        padding: 15px;
+        text-align: center; /* Center align card content */
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 300px; /* Adjusted height for larger images */
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-body p, .card-body h4 {
+        margin-bottom: 15px; /* Adjusted margin for spacing */
+        font-size: 18px; /* Increased font size */
+        line-height: 1.4;
+        color: black;
+    }
+
+    .card-body p {
+        font-weight: bold; /* Set movie name font to bold */
+    }
+</style>
+<body>
+
+<nav class="navbar">
+    <a class="navbar-brand text-white">BOOK RECOMMENDER</a>
+    <ul class="nav navbar-nav">
+        <li><a href="/" class="text-black">Home</a></li>
+        <li><a href="/recommend" class="text-black">Recommend</a></li>
+        <li><a>Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-black">RECOMMEND BOOKS</h1>
+            <form action="/recommend_books" method="post">
+                <input name="user_input" type="text" class="form-control" placeholder="Enter your preference">
+                <input type="submit" class="btn btn-lg btn-warning" value="Get Recommendations">
+            </form>
+        </div>
+
+        {% if data %}
+            {% for i in data %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ i[2] }}" alt="{{ i[0] }}">
+                            <p class="text-black" style="margin-bottom: 10px; font-size: 18px; font-weight: bold;">{{ i[0] }}</p> <!-- Updated margin, font size, and font weight -->
+                            <h4 class="text-black">{{ i[1] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>
