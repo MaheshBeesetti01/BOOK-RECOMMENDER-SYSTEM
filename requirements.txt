@@ -3,4 +3,4 @@ flask~=3.0.0
 pandas==1.5.0
 gunicorn==19.7.1
 python-dateutil==2.8.2
-gunicorn
+gunicorn==21.2.0
